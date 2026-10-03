@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PIXEL ZERO</title>
+  <style>
+    @font-face {
+      font-family: "DM Sans";
+      src: url("font/DM_Sans/DMSans-VariableFont_opsz,wght.ttf") format("truetype");
+      font-weight: 100 1000;
+      font-display: swap;
+    }
+
+    :root {
+      --bg:          #fff8e7;
+      --card:        #fffaf0;
+      --inset:       #fff3d6;
+      --border:      rgba(0, 0, 0,0.06);
+      --border-2:    rgba(0, 0, 0,0.10);
+      --fg:          #2c2c2c;
+      --fg-2:        #5a5a64;
+      --fg-3:        #7a7164;
+      --violet:      #ffeb3b;
+      --violet-2:    #ffe066;
+      --violet-lite: #ffeb3b;
+      --green:       #b3e5fc;
+      --red:         #f87171;
+      --sans:        "DM Sans", system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+    body {
+      width: 300px;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--sans);
+      overflow: hidden;
+    }
+
+    .pop { padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+
+    /* Header */
+    .head {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .logo-mark {
+      width: 34px; height: 34px;
+      border-radius: 10px;
+      flex-shrink: 0;
+      background: conic-gradient(from 200deg, var(--violet-lite), var(--violet), #ffc107, var(--violet-lite));
+      box-shadow: 0 4px 14px rgba(255, 235, 59,0.5);
+    }
+    .name { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
+    .tag  { font-size: 10px; color: var(--fg-3); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 1px; }
+
+    /* Status */
+    .status {
+      display: none;
+      border-radius: 9px;
+      padding: 9px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid transparent;
+    }
+    .status:not(:empty) { display: block; }
+    .status.info { color: var(--fg-2); background: rgba(0, 0, 0,0.04); border-color: var(--border); }
+    .status.ok   { color: var(--green); background: rgba(179, 229, 252,0.12); border-color: rgba(179, 229, 252,0.3); }
+    .status.err  { color: var(--red);  background: rgba(248,113,113,0.12); border-color: rgba(248,113,113,0.3); }
+
+    /* Buttons */
+    .actions { display: flex; flex-direction: column; gap: 9px; }
+
+    .pill {
+      width: 100%;
+      min-height: 44px;
+      border-radius: 12px;
+      padding: 0 16px;
+      cursor: pointer;
+      font-family: var(--sans);
+      font-size: 13.5px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      transition: all 0.16s ease;
+      border: 1px solid var(--border-2);
+    }
+    .pill:disabled { opacity: 0.5; cursor: not-allowed; }
+    .pill svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* OPEN PANEL — yellow highlighter pill (primary CTA) */
+    .pill.light { background: #ffeb3b; color: #2c2c2c; border-color: #ffd93d; box-shadow: 0 4px 14px rgba(255, 235, 59, 0.45); }
+    .pill.light:hover:not(:disabled) { filter: brightness(0.95); transform: translateY(-1px); }
+
+    /* INBUILT MODE — violet glass pill */
+    .pill.dark {
+      background: rgba(255, 235, 59,0.10);
+      color: var(--violet-lite);
+      border-color: rgba(255, 235, 59,0.35);
+    }
+    .pill.dark:hover:not(:disabled) { background: rgba(255, 235, 59,0.18); border-color: rgba(255, 235, 59,0.55); }
+
+    /* divider */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--fg-3);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .divider::before, .divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .hint {
+      font-size: 11px;
+      color: var(--fg-3);
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    /* Quick BIN / card save */
+    .binbox { position: relative; }
+    .binbox input {
+      width: 100%;
+      height: 44px;
+      border-radius: 12px;
+      border: 1px solid var(--border-2);
+      background: var(--inset);
+      color: var(--fg);
+      font-family: var(--sans);
+      font-size: 13px;
+      letter-spacing: 0.02em;
+      padding: 0 78px 0 14px;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .binbox input::placeholder { color: var(--fg-3); }
+    .binbox input:focus { border-color: var(--violet); box-shadow: 0 0 0 3px rgba(255, 235, 59,0.18); }
+    .binbox-actions {
+      position: absolute;
+      top: 50%;
+      right: 6px;
+      transform: translateY(-50%);
+      display: flex;
+      gap: 5px;
+    }
+    .binicon {
+      width: 31px; height: 31px;
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border-2);
+      background: rgba(0, 0, 0,0.05);
+      color: var(--fg-2);
+      cursor: pointer;
+      transition: all 0.14s ease;
+    }
+    .binicon:hover { background: rgba(0, 0, 0,0.11); color: var(--fg); }
+    .binicon:active { transform: scale(0.94); }
+    .binicon svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .binicon.save { background: rgba(255, 235, 59,0.16); border-color: rgba(255, 235, 59,0.40); color: var(--violet-lite); }
+    .binicon.save:hover { background: rgba(255, 235, 59,0.28); color: #fff; }
+  </style>
+</head>
+<body>
+  <div class="pop">
+    <div class="head">
+      <span class="logo-mark"></span>
+      <div>
+        <div class="name">PIXEL ZERO</div>
+        <div class="tag">Elite Automation</div>
+      </div>
+    </div>
+
+    <div id="status" class="status"></div>
+
+    <div class="actions">
+      <button id="openBtn" class="pill light" type="button">
+        <svg viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+        Open Panel
+      </button>
+
+      <div id="divider" class="divider">or</div>
+
+      <div id="binWrap" class="binbox">
+        <input id="binInput" type="text" placeholder="Paste BIN or card…" autocomplete="off" spellcheck="false">
+        <div class="binbox-actions">
+          <button id="binPasteBtn" class="binicon" type="button" title="Paste from clipboard">
+            <svg viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
+          </button>
+          <button id="binSaveBtn" class="binicon save" type="button" title="Save &amp; activate">
+            <svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <button id="inbuiltBtn" class="pill dark" type="button">
+        <svg viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/></svg>
+        Inbuilt Mode
+      </button>
+    </div>
+
+    <div id="hint" class="hint">Inbuilt mode auto-fills cards on the current checkout page.</div>
+  </div>
+  <script src="script/lantern.js"></script>
+</body>
+</html>

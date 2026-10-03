@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PIXEL ZERO — Login</title>
+  <style>
+    @font-face {
+      font-family: "DM Sans";
+      src: url("font/DM_Sans/DMSans-VariableFont_opsz,wght.ttf") format("truetype");
+      font-weight: 100 1000;
+      font-display: swap;
+    }
+
+    :root {
+      --cream:   #f3ede2;
+      --serif:   Georgia, "Times New Roman", serif;
+      --sans:    "DM Sans", system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body { height: 100%; overflow: hidden; }
+    body {
+      font-family: var(--sans);
+      background: #fff8e7;
+      color: #3d3d3d;
+    }
+
+    .auth-card {
+      width: 100vw;
+      height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-radius: 0;
+      overflow: hidden;
+    }
+
+    /* ── LEFT: image ── */
+    .auth-visual {
+      position: relative;
+      background: #fffaee;
+      overflow: hidden;
+    }
+    .auth-visual img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    .auth-visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,235,59,0.12) 0%, transparent 35%, rgba(255,193,7,0.20) 100%);
+    }
+    .visual-title {
+      position: absolute;
+      top: 54px;
+      left: 48px;
+      right: 48px;
+      z-index: 2;
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 40px;
+      line-height: 1.12;
+      color: #fffbe8;
+      letter-spacing: -0.01em;
+      text-shadow: 0 2px 24px rgba(0,0,0,0.45);
+    }
+    .visual-brand {
+      position: absolute;
+      bottom: 40px;
+      left: 48px;
+      right: 48px;
+      z-index: 2;
+      font-family: var(--serif);
+      font-size: 18px;
+      color: #fffbe8;
+      letter-spacing: 0.02em;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.5);
+    }
+
+    /* ── RIGHT: retro pastel cream/yellow panel ── */
+    .auth-panel {
+      position: relative;
+      padding: 54px 56px;
+      display: flex;
+      flex-direction: column;
+      background:
+        radial-gradient(640px 440px at 45% 46%, rgba(255, 235, 59, 0.32), transparent 62%),
+        linear-gradient(135deg, #fffceb 0%, #fff8e7 52%, #ffe082 100%);
+      overflow-y: auto;
+    }
+
+    .star {
+      width: 30px; height: 30px;
+      color: #ffeb3b;
+      margin-bottom: auto;
+    }
+    .star svg { width: 100%; height: 100%; display: block; }
+
+    .auth-content { margin: auto 0; max-width: 380px; }
+
+    .auth-h {
+      font-size: 34px;
+      font-weight: 500;
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+      color: #2c2c2c;
+    }
+    .auth-sub {
+      margin-top: 16px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: rgba(60, 50, 40, 0.65);
+      max-width: 320px;
+    }
+
+    .auth-actions { display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 0 26px;
+      border-radius: 999px;
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .16s ease;
+      border: 1px solid transparent;
+    }
+    .btn-fill {
+      background: #ffeb3b;
+      color: #2c2c2c;
+      box-shadow: 0 4px 14px rgba(255, 193, 7, 0.45);
+    }
+    .btn-fill:hover { filter: brightness(0.95); transform: translateY(-1px); }
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.55);
+      color: #2c2c2c;
+      border-color: rgba(0, 0, 0, 0.12);
+    }
+    .btn-ghost:hover { border-color: rgba(0, 0, 0, 0.28); background: rgba(255, 255, 255, 0.75); }
+    .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+    .btn .tg-ico { width: 17px; height: 17px; flex-shrink: 0; }
+
+    /* login step */
+    .auth-form { display: none; }
+    .auth-form.show { display: block; }
+    .auth-step1.hide { display: none; }
+    .field {
+      margin-top: 26px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(0, 0, 0, 0.18);
+      border-radius: 12px;
+      color: #2c2c2c;
+      font-family: var(--sans);
+      font-size: 14px;
+      padding: 13px 16px;
+      outline: none;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .field::placeholder { color: rgba(0, 0, 0, 0.35); }
+    .field:focus { border-color: #ffeb3b; box-shadow: 0 0 0 3px rgba(255, 235, 59, 0.4); }
+    .err { display: none; margin-top: 10px; font-size: 12.5px; color: #c62828; }
+    .err.show { display: block; }
+    .back {
+      margin-top: 16px;
+      font-size: 13px;
+      color: rgba(60, 50, 40, 0.6);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--sans);
+    }
+    .back:hover { color: #2c2c2c; text-decoration: underline; }
+    .hint {
+      display: none;
+      margin-top: 18px;
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: rgba(60, 50, 40, 0.6);
+    }
+    .hint.show { display: block; }
+    .hint b { color: #2c2c2c; font-weight: 600; }
+
+    .wait {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin-top: 28px;
+      font-size: 14px;
+      color: #2c2c2c;
+    }
+    .wait-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: #ffeb3b;
+      flex-shrink: 0;
+      animation: wpulse 1.4s ease-in-out infinite;
+    }
+    @keyframes wpulse {
+      0%, 100% { opacity: 0.3; transform: scale(0.8); }
+      50%      { opacity: 1;   transform: scale(1.1); }
+    }
+
+    .auth-foot {
+      margin-top: auto;
+      font-size: 12.5px;
+      color: rgba(60, 50, 40, 0.45);
+      letter-spacing: 0.02em;
+    }
+
+    @media (max-width: 820px) {
+      .auth-card {
+        grid-template-columns: 1fr;
+        grid-template-rows: 240px 1fr;
+        height: 100vh;
+      }
+      .auth-visual { min-height: auto; height: 240px; }
+      .visual-title { font-size: 30px; top: 32px; left: 32px; }
+      .visual-brand { left: 32px; bottom: 24px; }
+      .auth-panel { padding: 40px 36px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="auth-card">
+
+    <!-- LEFT IMAGE -->
+    <div class="auth-visual">
+      <img src="image/newfigureimage.jpeg" alt="">
+      <div class="visual-title">Pixel — The Peak hit<br>Automation Experience.</div>
+      <div class="visual-brand">Zero means, zero logs &amp; Full Control.</div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="auth-panel">
+      <div class="star">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 1c.4 5.3 4.7 9.6 10 10-5.3.4-9.6 4.7-10 10-.4-5.3-4.7-9.6-10-10C7.3 10.6 11.6 6.3 12 1Z"/>
+        </svg>
+      </div>
+
+      <div class="auth-content">
+        <!-- STEP 1 — matches the reference -->
+        <div class="auth-step1" id="step1">
+          <h1 class="auth-h">One more step to join #1 Hitting community,</h1>
+          <p class="auth-sub">Get access to your personal hitter.</p>
+          <div class="auth-actions">
+            <button id="oneTapBtn" class="btn btn-fill" type="button">
+              <svg class="tg-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.94 4.6 18.9 19.2c-.23 1.02-.84 1.27-1.7.79l-4.7-3.46-2.27 2.18c-.25.25-.46.46-.95.46l.34-4.8 8.74-7.9c.38-.34-.08-.53-.59-.19L6.7 13.2l-4.66-1.46c-1.01-.32-1.03-1.01.21-1.5l18.22-7.02c.84-.31 1.58.2 1.27 1.38Z"/></svg>
+              OneTap Login
+            </button>
+            <button id="otpLoginBtn" class="btn btn-ghost" type="button">OTP Login</button>
+          </div>
+        </div>
+
+        <!-- STEP 2 — OTP code -->
+        <div class="auth-form" id="step2">
+          <h1 class="auth-h">Enter your OTP</h1>
+          <p class="auth-sub">Paste the code from <b style="color:#e9ded4">@Pixelhitterbot</b> to sign in.</p>
+          <input id="otpInput" class="field" type="text" placeholder="OTP code" autocomplete="off" spellcheck="false">
+          <div class="err" id="loginErr">Invalid or expired code.</div>
+          <div class="auth-actions">
+            <button id="verifyBtn" class="btn btn-fill" type="button">Continue</button>
+            <button id="getOtpBtn" class="btn btn-ghost" type="button">Get OTP</button>
+          </div>
+          <button id="backBtn" class="back" type="button">← Back</button>
+        </div>
+
+        <!-- STEP 3 — OneTap waiting -->
+        <div class="auth-form" id="step3">
+          <h1 class="auth-h">Waiting for approval</h1>
+          <p class="auth-sub">Approve the login request in Telegram to continue.</p>
+          <div class="wait"><span class="wait-dot"></span><span id="waitText">Opening Telegram…</span></div>
+          <div class="err" id="oneTapErr">Session expired. Try again.</div>
+          <button id="cancelBtn" class="back" type="button">← Cancel</button>
+        </div>
+      </div>
+
+      <div class="auth-foot">Chosen by <span id="statUsers">—</span> People Worldwide, Pixel assisted <span id="statHits">—</span>+ hits since now.</div>
+    </div>
+
+  </div>
+  <script src="script/binder.js"></script>
+</body>
+</html>
