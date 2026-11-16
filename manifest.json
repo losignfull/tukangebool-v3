@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "PixelZero v_1.3",
+  "name": "TukangEbooL v_1.3",
   "version": "1.3",
   "description": "Enter the Next Generation",
   "permissions": [
@@ -29,7 +29,7 @@
     "service_worker": "script/Bread.js"
   },
   "action": {
-    "default_title": "PIXEL ZERO",
+    "default_title": "TUKANGEBOOL",
     "default_popup": "popup.html",
     "default_icon": {
       "16": "icons/icon16.png",
