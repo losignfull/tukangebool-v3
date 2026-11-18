@@ -80,6 +80,21 @@
       ],
       "run_at": "document_idle",
       "all_frames": true
+    },
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "exclude_matches": [
+        "*://*.hcaptcha.com/*",
+        "*://hcaptcha.com/*",
+        "*://newassets.hcaptcha.com/*"
+      ],
+      "js": [
+        "script/rebrand-strings.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": true
     }
   ],
   "web_accessible_resources": [
