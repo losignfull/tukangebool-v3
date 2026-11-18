@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PIXEL ZERO</title>
+  <style>
+    @font-face {
+      font-family: "DM Sans";
+      src: url("font/DM_Sans/DMSans-VariableFont_opsz,wght.ttf") format("truetype");
+      font-weight: 100 1000;
+      font-display: swap;
+    }
+
+    :root {
+      --bg:          #f2f4f8;
+      --card:        #ffffff;
+      --inset:       #eef1f6;
+      --border:      rgba(22,28,44,0.08);
+      --border-2:    rgba(22,28,44,0.16);
+      --fg:          #14171d;
+      --fg-2:        #4b5162;
+      --fg-3:        #8a8fa0;
+      --tred:        #d32f2f;
+      --tred-2:      #b71c1c;
+      --tred-lite:   #e53935;
+      --tblue:       #1e4fa3;
+      --tblue-2:     #163f85;
+      --tblue-lite:  #2a5caa;
+      --green:       #059669;
+      --red:         #dc2626;
+      --sans:        "DM Sans", system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+    body {
+      width: 300px;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--sans);
+      overflow: hidden;
+      position: relative;
+    }
+    /* Transformer visor strip — red/blue across the top */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--tred) 0%, var(--tred) 42%, #8a94a8 50%, var(--tblue) 58%, var(--tblue) 100%);
+      z-index: 2;
+    }
+
+    .pop { padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+
+    /* Header */
+    .head {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .head::after {
+      content: "";
+      position: absolute;
+      bottom: -1px; left: 0;
+      width: 38%;
+      height: 1px;
+      background: linear-gradient(90deg, var(--tred), var(--tblue));
+    }
+    .logo-mark {
+      width: 34px; height: 34px;
+      border-radius: 10px;
+      flex-shrink: 0;
+      background:
+        conic-gradient(from 220deg, var(--tred-lite), var(--tred), #9aa3b2 46%, var(--tblue) 62%, var(--tblue-lite), var(--tred-lite));
+      box-shadow: 0 4px 14px rgba(29,54,105,0.28), inset 0 1px 0 rgba(255,255,255,0.55);
+    }
+    .name { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; color: var(--fg); }
+    .tag  { font-size: 10px; color: var(--fg-3); letter-spacing: 0.14em; text-transform: uppercase; margin-top: 1px; font-weight: 600; }
+
+    /* Status */
+    .status {
+      display: none;
+      border-radius: 9px;
+      padding: 9px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid transparent;
+    }
+    .status:not(:empty) { display: block; }
+    .status.info { color: var(--tblue); background: rgba(30,79,163,0.07); border-color: rgba(30,79,163,0.22); }
+    .status.ok   { color: var(--green); background: rgba(5,150,105,0.08); border-color: rgba(5,150,105,0.28); }
+    .status.err  { color: var(--red);  background: rgba(220,38,38,0.07); border-color: rgba(220,38,38,0.26); }
+
+    /* Buttons */
+    .actions { display: flex; flex-direction: column; gap: 9px; }
+
+    .pill {
+      width: 100%;
+      min-height: 44px;
+      border-radius: 12px;
+      padding: 0 16px;
+      cursor: pointer;
+      font-family: var(--sans);
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      transition: all 0.16s ease;
+      border: 1px solid var(--border-2);
+    }
+    .pill:disabled { opacity: 0.5; cursor: not-allowed; }
+    .pill svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* OPEN PANEL — Autobot red plate, chamfered corners */
+    .pill.light {
+      background: linear-gradient(135deg, var(--tred-lite) 0%, var(--tred) 55%, var(--tred-2) 100%);
+      color: #fff;
+      border-color: transparent;
+      clip-path: polygon(0 0, calc(100% - 13px) 0, 100% 13px, 100% 100%, 13px 100%, 0 calc(100% - 13px));
+      border-radius: 0;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 6px 18px rgba(211,47,47,0.3);
+    }
+    .pill.light:hover:not(:disabled) { filter: brightness(1.06); }
+
+    /* INBUILT MODE — Optimus blue steel plate */
+    .pill.dark {
+      background: linear-gradient(135deg, rgba(30,79,163,0.09), rgba(30,79,163,0.05));
+      color: var(--tblue);
+      border-color: rgba(30,79,163,0.35);
+      clip-path: polygon(0 0, calc(100% - 13px) 0, 100% 13px, 100% 100%, 13px 100%, 0 calc(100% - 13px));
+      border-radius: 0;
+    }
+    .pill.dark:hover:not(:disabled) { background: rgba(30,79,163,0.16); border-color: rgba(30,79,163,0.55); }
+
+    /* divider */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--fg-3);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .divider::before, .divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border-2);
+    }
+
+    .hint {
+      font-size: 11px;
+      color: var(--fg-3);
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    /* Quick BIN / card save */
+    .binbox { position: relative; }
+    .binbox input {
+      width: 100%;
+      height: 44px;
+      border-radius: 12px;
+      border: 1px solid var(--border-2);
+      background: var(--card);
+      color: var(--fg);
+      font-family: var(--sans);
+      font-size: 13px;
+      letter-spacing: 0.02em;
+      padding: 0 78px 0 14px;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .binbox input::placeholder { color: var(--fg-3); }
+    .binbox input:focus { border-color: var(--tred); box-shadow: 0 0 0 3px rgba(211,47,47,0.15); }
+    .binbox-actions {
+      position: absolute;
+      top: 50%;
+      right: 6px;
+      transform: translateY(-50%);
+      display: flex;
+      gap: 5px;
+    }
+    .binicon {
+      width: 31px; height: 31px;
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border-2);
+      background: rgba(22,28,44,0.04);
+      color: var(--fg-2);
+      cursor: pointer;
+      transition: all 0.14s ease;
+    }
+    .binicon:hover { background: rgba(22,28,44,0.1); color: var(--fg); }
+    .binicon:active { transform: scale(0.94); }
+    .binicon svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .binicon.save { background: rgba(211,47,47,0.12); border-color: rgba(211,47,47,0.38); color: var(--tred); }
+    .binicon.save:hover { background: var(--tred); color: #fff; }
+  </style>
+</head>
+<body>
+  <div class="pop">
+    <div class="head">
+      <span class="logo-mark"></span>
+      <div>
+        <div class="name">PIXEL ZERO</div>
+        <div class="tag">Elite Automation</div>
+      </div>
+    </div>
+
+    <div id="status" class="status"></div>
+
+    <div class="actions">
+      <button id="openBtn" class="pill light" type="button">
+        <svg viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+        Open Panel
+      </button>
+
+      <div id="divider" class="divider">or</div>
+
+      <div id="binWrap" class="binbox">
+        <input id="binInput" type="text" placeholder="Paste BIN or card…" autocomplete="off" spellcheck="false">
+        <div class="binbox-actions">
+          <button id="binPasteBtn" class="binicon" type="button" title="Paste from clipboard">
+            <svg viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
+          </button>
+          <button id="binSaveBtn" class="binicon save" type="button" title="Save &amp; activate">
+            <svg viewBox="0 0 24 24"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <button id="inbuiltBtn" class="pill dark" type="button">
+        <svg viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/></svg>
+        Inbuilt Mode
+      </button>
+    </div>
+
+    <div id="hint" class="hint">Inbuilt mode auto-fills cards on the current checkout page.</div>
+  </div>
+  
+</body>
+</html>
