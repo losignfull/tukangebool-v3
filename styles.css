@@ -310,20 +310,16 @@
     position: fixed;
     top: 12px;
     right: 12px;
-    background: linear-gradient(145deg, #f7f9f8 0%, #f2f5f4 40%, #eef2f0 100%);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-radius: 16px;
+    background: #fffdf7;
+    border-radius: 12px;
     padding: 0;
     width: 166px;
     font-family:
         -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    box-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.05),
-        0 1px 6px rgba(0, 0, 0, 0.03);
+    box-shadow: 4px 4px 0 #111114;
     z-index: 2147483647;
     overflow: hidden;
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    border: 2px solid #111114;
     transform-origin: top right;
     transform: translateZ(0);
     backface-visibility: hidden;
@@ -337,21 +333,19 @@
     min-height: 32px;
     max-height: 32px;
     padding: 0;
-    border-radius: 12px;
+    border-radius: 10px;
     cursor: pointer;
-    background: #d32f2f;
+    background: #e63946;
     overflow: hidden;
     transform-origin: top right;
-    border: none;
-    box-shadow:
-        0 2px 8px rgba(211, 47, 47, 0.4),
-        0 0 0 1px rgba(211, 47, 47, 0.1);
+    border: 2px solid #111114;
+    box-shadow: 3px 3px 0 #111114;
     transition: none;
 }
 
 .card-generator-overlay.minimized:hover {
-    box-shadow: 0 4px 12px rgba(211, 47, 47, 0.5);
-    transform: scale(1.08);
+    box-shadow: 5px 5px 0 #111114;
+    transform: translate(-1px, -1px);
 }
 
 .card-generator-overlay.minimized .modal-content,
@@ -2808,16 +2802,11 @@
 }
 
 #autocoBtn {
-    background: linear-gradient(180deg, #ffffff 0%, #e9edf3 100%);
-    color: #14171d;
-    border: 1px solid rgba(22, 28, 44, 0.18);
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.9),
-        inset 0 -1px 3px rgba(22, 28, 44, 0.06),
-        0 4px 14px rgba(22, 28, 44, 0.12);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    font-weight: 700;
+    background: #fffdf7;
+    color: #111114;
+    border: 2px solid #111114;
+    box-shadow: 3px 3px 0 #111114;
+    font-weight: 800;
     letter-spacing: 0.5px;
     text-shadow: none;
     font-size: 14px;
@@ -2826,8 +2815,8 @@
     justify-content: center;
     gap: 8px;
     padding: 12px;
-    border-radius: 14px;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border-radius: 10px;
+    transition: transform 0.08s linear, box-shadow 0.08s linear, background 0.12s;
     cursor: pointer;
 }
 
@@ -2837,28 +2826,22 @@
 }
 
 #autocoBtn:hover {
-    background: linear-gradient(180deg, #ffffff 0%, #dfe5ee 100%);
-    border-color: rgba(211, 47, 47, 0.45);
-    transform: translateY(-1px);
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.9),
-        inset 0 -1px 3px rgba(22, 28, 44, 0.06),
-        0 6px 18px rgba(211, 47, 47, 0.2);
+    background: #f4f1e8;
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0 #111114;
 }
 
 #autocoBtn:active {
-    transform: translateY(0);
-    box-shadow: inset 0 1px 4px rgba(22, 28, 44, 0.25);
+    transform: translate(2px, 2px);
+    box-shadow: none;
 }
 
 #autocoBtn.active {
-    background: linear-gradient(135deg, #e53935 0%, #d32f2f 55%, #b71c1c 100%) !important;
-    border-color: rgba(183, 28, 28, 0.6) !important;
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.35),
-        0 0 14px rgba(211, 47, 47, 0.35) !important;
+    background: #e63946 !important;
+    border-color: #111114 !important;
+    box-shadow: 3px 3px 0 #111114 !important;
     color: #fff !important;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+    text-shadow: none;
     animation: none;
 }
 
@@ -2870,10 +2853,10 @@
     left: auto !important;
     bottom: auto !important;
     width: auto;
-    min-width: 32px;
+    min-width: 36px;
     padding: 11px 12px;
     font-size: 12.5px;
-    border-radius: 12px;
+    border-radius: 10px;
     z-index: 2147483646 !important;
 }
 

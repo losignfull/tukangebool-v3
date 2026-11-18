@@ -2833,6 +2833,196 @@
       .rev-left .rev-btns > .pill-btn:first-child,
       .rev-left .rev-btns > .pill-btn:last-child { border-radius: var(--r-md) !important; }
     }
+
+    /* ═══════════════════ NEO-BRUTALISM ═══════════════════ */
+    :root {
+      --panel:       #f4f1e8;
+      --panel-2:     #eeeae0;
+      --card:        #fffdf7;
+      --card-2:      #fffdf7;
+      --inset:       #fffdf7;
+      --border:      #111114;
+      --border-2:    #111114;
+      --fg:          #111114;
+      --fg-2:        #2b2b31;
+      --fg-3:        #5a5a63;
+      --fg-4:        #8e8e97;
+      --violet:      #e63946;
+      --violet-2:    #c1121f;
+      --violet-lite: #c1121f;
+      --tblue:       #1d4ed8;
+      --green:       #15803d;
+      --red:         #c1121f;
+      --r:           12px;
+      --r-md:        10px;
+      --r-sm:        8px;
+      --ink:         #111114;
+      --elev-1:      3px 3px 0 #111114;
+      --elev-2:      6px 6px 0 #111114;
+      --hairline:    2px solid #111114;
+      --focus:       0 0 0 3px rgba(17,17,20,0.85);
+    }
+    body { background: var(--panel); }
+    .panel { background: var(--panel); }
+    body.has-wallpaper .panel { background: rgba(244,241,232,0.9); }
+
+    /* permukaan: kartu & panel */
+    .glass, .cm-card, .pc-post, .upg-card, .ml-box, .ml-msg, .ml-attach-card,
+    .ml-quota, .lb-row, .lb-ghost, .bp-gate, .bypass-cvc-row, .bypass-gate-block,
+    .ml-suggest-row, .prf-stats, .vote-chip, .ipl-wrap, .notes-area,
+    .ml-detail-body, .cc-results, .cm-modal-card, .avatar-menu, .notif-panel,
+    .toast, .mdw-plan, .sb-plan, .dhl-chip, .lb-you, .glass .txn-cat {
+      background: #fffdf7 !important;
+      background-image: none !important;
+      border: 2px solid var(--ink) !important;
+      border-radius: var(--r-md) !important;
+      box-shadow: var(--elev-1) !important;
+    }
+    .lb-row.me, .upg-card.popular, .bin-chip.active, .pc-lock-card {
+      background: #fffdf7 !important;
+      border: 2px solid var(--violet) !important;
+      box-shadow: var(--elev-1) !important;
+    }
+
+    /* kontrol */
+    .pill-btn, .btn, .mode-toggle, .mode-btn, .back-btn, .bypass-mode-btn,
+    .upg-nav, .circle-btn, .bin-chip-btn, .help-dot, .mdw-plan-btn,
+    .sb-plan-btn, .prf-save-btn, .cm-follow, .ml-box-del, .ml-create-actions .btn,
+    .upgrade-btn, .cm-act, .cm-card-more, .lb-nav, .binicon, .notes-actions .btn {
+      background: #fffdf7 !important;
+      background-image: none !important;
+      border: 2px solid var(--ink) !important;
+      border-radius: var(--r-sm) !important;
+      box-shadow: 2px 2px 0 var(--ink) !important;
+      color: var(--fg) !important;
+      transition: transform .08s linear, box-shadow .08s linear !important;
+    }
+    .pill-btn:hover, .btn:hover, .mode-btn:hover, .back-btn:hover,
+    .bypass-mode-btn:hover, .upg-nav:hover:not(:disabled), .circle-btn:hover,
+    .prf-save-btn:hover, .cm-follow:hover, .binicon:hover, .bin-chip-btn:hover {
+      transform: translate(-1px, -1px) !important;
+      box-shadow: 3px 3px 0 var(--ink) !important;
+    }
+    .pill-btn:active, .btn:active, .mode-btn:active, .back-btn:active,
+    .circle-btn:active, .prf-save-btn:active { transform: translate(2px, 2px) !important; box-shadow: none !important; }
+
+    /* CTA */
+    .pill-btn.light, .btn-primary, .upg-cta.violet, .prf-upgrade-btn,
+    .upgrade-btn, .lb-you, .prf-avatar-edit {
+      background: var(--violet) !important;
+      background-image: none !important;
+      border: 2px solid var(--ink) !important;
+      color: #fff !important;
+      box-shadow: 2px 2px 0 var(--ink) !important;
+    }
+    .upgrade-btn, .upg-cta.gold, .lb-badge, .pro-badge, .bp-pro-tag, .prf-plan-badge.gold {
+      background: #ffd60a !important;
+      background-image: none !important;
+      border: 2px solid var(--ink) !important;
+      color: var(--ink) !important;
+      box-shadow: 2px 2px 0 var(--ink) !important;
+      -webkit-text-fill-color: currentColor !important;
+    }
+
+    /* input */
+    input[type=text], input[type=password], textarea, select, .ml-select,
+    .ml-input-field, .cc-cmt-input, .vote-input, .prf-bio-input, .binbox input,
+    #bypassBinInput, #bypassCcInput, .cm-cmt-input {
+      background: #fffdf7 !important;
+      border: 2px solid var(--ink) !important;
+      border-radius: var(--r-sm) !important;
+      box-shadow: inset 2px 2px 0 rgba(17,17,20,0.06) !important;
+    }
+    textarea:focus, input:focus, select:focus, .vote-input:focus,
+    .prf-bio-input:focus, .cm-cmt-input:focus, .ml-select:focus {
+      outline: none;
+      border-color: var(--ink) !important;
+      box-shadow: 3px 3px 0 var(--violet) !important;
+    }
+
+    /* nav & segmen */
+    .nav-pills, .seg, .mode-toggle {
+      background: #fffdf7 !important;
+      border: 2px solid var(--ink) !important;
+      border-radius: var(--r-md) !important;
+      box-shadow: 2px 2px 0 var(--ink) !important;
+    }
+    .nav-item { color: var(--fg-2); border: 2px solid transparent; }
+    .nav-item:hover { color: var(--fg); background: #f4f1e8; }
+    .nav-item.active {
+      background: var(--violet) !important;
+      border: 2px solid var(--ink) !important;
+      color: #fff !important;
+      box-shadow: none !important;
+    }
+    .nav-item.active .ico { color: #fff !important; }
+    .seg button.active, .mode-btn.active, .bypass-mode-btn.active {
+      background: var(--ink) !important;
+      color: #fff !important;
+      box-shadow: none !important;
+    }
+
+    /* tipografi & label */
+    .sec-title, .welcome, .rev-big, .upg-hero-title {
+      letter-spacing: -0.02em;
+      font-weight: 800;
+    }
+    .sec-sub, .hint, .rev-label, .dhl-k, .form-label, .sb-sec,
+    .prf-field-label, .mdw-sec, .upg-card-tag, .tag {
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      font-weight: 700;
+    }
+    .upg-hero-title {
+      background: none !important;
+      -webkit-text-fill-color: currentColor !important;
+      color: var(--ink) !important;
+    }
+    .upg-price-curr, .upg-card.free .upg-price-curr, .plan-gold, .upg-proof-item b {
+      color: var(--ink) !important;
+      -webkit-text-fill-color: currentColor !important;
+      text-shadow: none !important;
+      background: none !important;
+    }
+
+    /* komponen khusus */
+    .avatar { border: 2px solid var(--ink); border-radius: var(--r-sm); box-shadow: 2px 2px 0 var(--ink) !important; }
+    .avatar-menu-item { border-radius: 6px; }
+    .avatar-menu-item:hover { background: #f4f1e8 !important; }
+    #status.ok, #status.err, .status.ok, .status.err, .status.info {
+      border: 2px solid var(--ink) !important;
+      border-radius: var(--r-sm) !important;
+      background: #fffdf7 !important;
+      box-shadow: 2px 2px 0 var(--ink);
+    }
+    #status.ok, .status.ok { color: var(--green) !important; }
+    #status.err, .status.err { color: var(--red) !important; }
+    input[type=checkbox] { border: 2px solid var(--ink); border-radius: 6px; }
+    .bp-track, .bp-track::before { border: 2px solid var(--ink); }
+    .lb-more-veil { background: #f4f1e8 !important; }
+    .dhl-bar { background: #e6e1d5; border-radius: 0; }
+    .dhl-bar i { background: var(--violet); }
+    .heat-cell { border: 1px solid var(--ink); border-radius: 2px; background: #fffdf7; }
+    .heat-cell.i1 { background: #f7b9bd; } .heat-cell.i2 { background: #ee7b84; }
+    .heat-cell.i3 { background: #e63946; } .heat-cell.i4 { background: #c1121f; }
+
+    /* sidebar & drawer */
+    .sidebar { border-right: 2px solid var(--ink); }
+    #mobDrawer { background: #f4f1e8 !important; border-right: 2px solid var(--ink); box-shadow: 6px 0 0 rgba(17,17,20,0.25) !important; }
+    .sidebar .nav-item.active, .mdw-item.active {
+      background: var(--violet) !important;
+      color: #fff !important;
+      border: 2px solid var(--ink) !important;
+      box-shadow: none !important;
+    }
+    .sidebar .nav-item.active .ico, .mdw-item.active .ico { color: #fff !important; }
+
+    /* buang blur & glow sisa */
+    .avatar-menu, .notif-panel, .card-generator-overlay, .pc-lock-card, #mobDrawer {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+    .modal, .cm-modal { background: rgba(17,17,20,0.55) !important; }
   </style>
 </head>
 <body>

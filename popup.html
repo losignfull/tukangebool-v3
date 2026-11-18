@@ -13,14 +13,15 @@
     }
 
     :root {
-      --bg:          #f2f4f8;
-      --card:        #ffffff;
-      --inset:       #eef1f6;
-      --border:      rgba(22,28,44,0.08);
-      --border-2:    rgba(22,28,44,0.16);
-      --fg:          #14171d;
-      --fg-2:        #4b5162;
-      --fg-3:        #8a8fa0;
+      --bg:          #f4f1e8;
+      --card:        #fffdf7;
+      --inset:       #fffdf7;
+      --border:      #111114;
+      --border-2:    #111114;
+      --fg:          #111114;
+      --fg-2:        #2b2b31;
+      --fg-3:        #5a5a63;
+      --ink:         #111114;
       --tred:        #d32f2f;
       --tred-2:      #b71c1c;
       --tred-lite:   #e53935;
@@ -60,7 +61,7 @@
       align-items: center;
       gap: 11px;
       padding-bottom: 14px;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 2px solid var(--border);
       position: relative;
     }
     .head::after {
@@ -68,16 +69,17 @@
       position: absolute;
       bottom: -1px; left: 0;
       width: 38%;
-      height: 1px;
-      background: linear-gradient(90deg, var(--tred), var(--tblue));
+      height: 3px;
+      background: linear-gradient(90deg, var(--tred) 0 50%, var(--tblue) 50% 100%);
     }
     .logo-mark {
       width: 34px; height: 34px;
       border-radius: 10px;
       flex-shrink: 0;
-      background:
-        conic-gradient(from 220deg, var(--tred-lite), var(--tred), #9aa3b2 46%, var(--tblue) 62%, var(--tblue-lite), var(--tred-lite));
-      box-shadow: 0 4px 14px rgba(29,54,105,0.28), inset 0 1px 0 rgba(255,255,255,0.55);
+      background: linear-gradient(135deg, var(--tred-lite) 0 50%, var(--tblue) 50% 100%);
+      border: 2px solid var(--ink);
+      border-radius: 8px;
+      box-shadow: 2px 2px 0 var(--ink);
     }
     .name { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; color: var(--fg); }
     .tag  { font-size: 10px; color: var(--fg-3); letter-spacing: 0.14em; text-transform: uppercase; margin-top: 1px; font-weight: 600; }
@@ -85,16 +87,17 @@
     /* Status */
     .status {
       display: none;
-      border-radius: 9px;
+      border-radius: 8px;
       padding: 9px 12px;
       font-size: 12px;
       font-weight: 600;
       border: 1px solid transparent;
     }
     .status:not(:empty) { display: block; }
-    .status.info { color: var(--tblue); background: rgba(30,79,163,0.07); border-color: rgba(30,79,163,0.22); }
-    .status.ok   { color: var(--green); background: rgba(5,150,105,0.08); border-color: rgba(5,150,105,0.28); }
-    .status.err  { color: var(--red);  background: rgba(220,38,38,0.07); border-color: rgba(220,38,38,0.26); }
+    .status { border: 2px solid var(--ink) !important; box-shadow: 2px 2px 0 var(--ink); }
+    .status.info { color: var(--tblue); background: #fffdf7; }
+    .status.ok   { color: var(--green); background: #fffdf7; }
+    .status.err  { color: var(--red);  background: #fffdf7; }
 
     /* Buttons */
     .actions { display: flex; flex-direction: column; gap: 9px; }
@@ -102,7 +105,7 @@
     .pill {
       width: 100%;
       min-height: 44px;
-      border-radius: 12px;
+      border-radius: 8px;
       padding: 0 16px;
       cursor: pointer;
       font-family: var(--sans);
@@ -121,24 +124,23 @@
 
     /* OPEN PANEL — Autobot red plate, chamfered corners */
     .pill.light {
-      background: linear-gradient(135deg, var(--tred-lite) 0%, var(--tred) 55%, var(--tred-2) 100%);
+      background: var(--tred);
       color: #fff;
-      border-color: transparent;
-      clip-path: polygon(0 0, calc(100% - 13px) 0, 100% 13px, 100% 100%, 13px 100%, 0 calc(100% - 13px));
-      border-radius: 0;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 6px 18px rgba(211,47,47,0.3);
+      border: 2px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--ink);
     }
-    .pill.light:hover:not(:disabled) { filter: brightness(1.06); }
+    .pill.light:hover:not(:disabled) { background: var(--tred-lite); }
+    .pill.light:active:not(:disabled) { transform: translate(2px,2px); box-shadow: none; }
 
     /* INBUILT MODE — Optimus blue steel plate */
     .pill.dark {
-      background: linear-gradient(135deg, rgba(30,79,163,0.09), rgba(30,79,163,0.05));
+      background: #fffdf7;
       color: var(--tblue);
-      border-color: rgba(30,79,163,0.35);
-      clip-path: polygon(0 0, calc(100% - 13px) 0, 100% 13px, 100% 100%, 13px 100%, 0 calc(100% - 13px));
-      border-radius: 0;
+      border: 2px solid var(--ink);
+      box-shadow: 3px 3px 0 var(--ink);
     }
-    .pill.dark:hover:not(:disabled) { background: rgba(30,79,163,0.16); border-color: rgba(30,79,163,0.55); }
+    .pill.dark:hover:not(:disabled) { background: #eef3ff; }
+    .pill.dark:active:not(:disabled) { transform: translate(2px,2px); box-shadow: none; }
 
     /* divider */
     .divider {
@@ -154,7 +156,7 @@
     .divider::before, .divider::after {
       content: "";
       flex: 1;
-      height: 1px;
+      height: 2px;
       background: var(--border-2);
     }
 
@@ -170,9 +172,10 @@
     .binbox input {
       width: 100%;
       height: 44px;
-      border-radius: 12px;
-      border: 1px solid var(--border-2);
+      border-radius: 8px;
+      border: 2px solid var(--border-2);
       background: var(--card);
+      box-shadow: inset 2px 2px 0 rgba(17,17,20,0.05);
       color: var(--fg);
       font-family: var(--sans);
       font-size: 13px;
@@ -182,7 +185,7 @@
       transition: border-color 0.15s ease, box-shadow 0.15s ease;
     }
     .binbox input::placeholder { color: var(--fg-3); }
-    .binbox input:focus { border-color: var(--tred); box-shadow: 0 0 0 3px rgba(211,47,47,0.15); }
+    .binbox input:focus { border-color: var(--ink); box-shadow: 3px 3px 0 var(--tred); }
     .binbox-actions {
       position: absolute;
       top: 50%;
@@ -193,19 +196,20 @@
     }
     .binicon {
       width: 31px; height: 31px;
-      border-radius: 9px;
+      border-radius: 6px;
       display: flex; align-items: center; justify-content: center;
-      border: 1px solid var(--border-2);
-      background: rgba(22,28,44,0.04);
+      border: 2px solid var(--ink);
+      background: #fffdf7;
+      box-shadow: 1.5px 1.5px 0 var(--ink);
       color: var(--fg-2);
       cursor: pointer;
       transition: all 0.14s ease;
     }
-    .binicon:hover { background: rgba(22,28,44,0.1); color: var(--fg); }
-    .binicon:active { transform: scale(0.94); }
+    .binicon:hover { background: #f4f1e8; color: var(--fg); transform: translate(-1px,-1px); box-shadow: 2px 2px 0 var(--ink); }
+    .binicon:active { transform: translate(1px,1px); box-shadow: none; }
     .binicon svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-    .binicon.save { background: rgba(211,47,47,0.12); border-color: rgba(211,47,47,0.38); color: var(--tred); }
-    .binicon.save:hover { background: var(--tred); color: #fff; }
+    .binicon.save { background: var(--tred); color: #fff; }
+    .binicon.save:hover { background: var(--tred-lite); color: #fff; }
   </style>
 </head>
 <body>
