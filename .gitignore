@@ -1,2 +1,7 @@
+# Sensitive / backup files
+*.bak
+*.zip
+
+# Local previews / runtime artifacts
 preview-*.html
 .and-code/
