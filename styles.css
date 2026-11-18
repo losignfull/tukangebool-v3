@@ -5498,3 +5498,332 @@ body:has(.card-generator-overlay:not(.minimized)) #autocoBtn {
 #tgModal .tg-status {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   NEO-BRUTALISM — in-page (checkout) surfaces
+   Flat cream fills · 2px ink borders · hard offset shadows
+   ══════════════════════════════════════════════════════════════════ */
+.card-generator-overlay,
+.card-generator-overlay .modal-content,
+.card-generator-overlay .login-screen,
+.bin-library-modal,
+.bulk-checker-modal,
+.cc-modal-content,
+.bin-notification,
+.card-toast,
+.bg-info-box,
+.success-overlay-full,
+.PIXZER0IMUBILD-error-content {
+    background: #fffdf7 !important;
+    background-image: none !important;
+    border: 2px solid #111114 !important;
+    border-radius: 12px !important;
+    box-shadow: 4px 4px 0 #111114 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    color: #111114 !important;
+}
+
+.card-generator-overlay * ,
+.cc-modal-content * ,
+#tgModal * {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* judul & header */
+.card-generator-overlay .panel-header,
+.cc-modal-header,
+.PIXZER0IMUBILD-error-header {
+    border-bottom: 2px solid #111114 !important;
+    background: #fffdf7 !important;
+    background-image: none !important;
+    color: #111114 !important;
+}
+.PIXZER0IMUBILD-error-header {
+    background: #e63946 !important;
+    color: #fff !important;
+    border-bottom: 2px solid #111114 !important;
+}
+.card-generator-overlay .panel-title,
+.cc-modal-header span,
+.bin-notification-title,
+.card-toast-label,
+.bg-info-box-title {
+    text-transform: uppercase !important;
+    letter-spacing: 0.08em !important;
+    font-weight: 800 !important;
+    color: #111114 !important;
+}
+.PIXZER0IMUBILD-error-header * { color: #fff !important; }
+
+/* tombol */
+.card-generator-overlay button,
+.card-generator-overlay .action-btn,
+.bin-library-modal button,
+.bulk-checker-modal button,
+.cc-modal-content button,
+#tgModal button,
+#tgModal .action-btn {
+    background: #fffdf7 !important;
+    background-image: none !important;
+    border: 2px solid #111114 !important;
+    border-radius: 8px !important;
+    box-shadow: 2px 2px 0 #111114 !important;
+    color: #111114 !important;
+    font-weight: 700 !important;
+    text-shadow: none !important;
+    transition: transform .08s linear, box-shadow .08s linear !important;
+}
+.card-generator-overlay button:hover,
+.bin-library-modal button:hover,
+.bulk-checker-modal button:hover,
+.cc-modal-content button:hover,
+#tgModal button:hover {
+    background: #f4f1e8 !important;
+    transform: translate(-1px, -1px) !important;
+    box-shadow: 3px 3px 0 #111114 !important;
+}
+.card-generator-overlay button:active,
+.bin-library-modal button:active,
+.bulk-checker-modal button:active,
+.cc-modal-content button:active,
+#tgModal button:active {
+    transform: translate(2px, 2px) !important;
+    box-shadow: none !important;
+}
+
+/* CTA */
+.card-generator-overlay .primary-btn,
+.cc-modal-content .primary-btn,
+#tgModal .primary-btn,
+#tgModal .test-btn,
+.card-generator-overlay .action-btn.primary-btn {
+    background: #e63946 !important;
+    border: 2px solid #111114 !important;
+    color: #fff !important;
+    box-shadow: 2px 2px 0 #111114 !important;
+    animation: none !important;
+}
+.card-generator-overlay .primary-btn:hover,
+#tgModal .primary-btn:hover {
+    background: #c1121f !important;
+    filter: none !important;
+}
+
+/* minimize: tetap transparan penuh (agar dot merah bersih) */
+.card-generator-overlay .minimize-btn,
+.card-generator-overlay.minimized .minimize-btn {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    color: #fffdf7 !important;
+    text-shadow: none !important;
+    width: 100%;
+    height: 100%;
+}
+.card-generator-overlay .minimize-btn:hover {
+    transform: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+/* input */
+.card-generator-overlay input:not([type=checkbox]):not([type=radio]):not([type=button]),
+.card-generator-overlay textarea,
+.card-generator-overlay select,
+.bin-library-modal input,
+.bulk-checker-modal textarea,
+.cc-modal-content input,
+#tgModal .input-field {
+    background: #fffdf7 !important;
+    background-image: none !important;
+    border: 2px solid #111114 !important;
+    border-radius: 8px !important;
+    box-shadow: inset 2px 2px 0 rgba(17,17,20,0.06) !important;
+    color: #111114 !important;
+    text-shadow: none !important;
+}
+.card-generator-overlay input:focus,
+.card-generator-overlay textarea:focus,
+#tgModal .input-field:focus {
+    outline: none !important;
+    border-color: #111114 !important;
+    box-shadow: 3px 3px 0 #e63946 !important;
+}
+
+/* kartu/baris di dalam panel */
+.card-generator-overlay .bin-card-box,
+.card-generator-overlay .bin-library-row,
+.card-generator-overlay .bin-library-card,
+.card-generator-overlay .bulk-item,
+.card-generator-overlay .account-item,
+.card-generator-overlay .bg-info-box,
+.card-generator-overlay .cc-info,
+.card-generator-overlay .bin-input-row,
+.card-generator-overlay .bulk-list {
+    background: #fffdf7 !important;
+    background-image: none !important;
+    border: 2px solid #111114 !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+}
+
+/* hiasan gradient lama → flat */
+.card-generator-overlay * ,
+.cc-modal-content * ,
+.bg-info-box * {
+    background-image: none;
+}
+
+/* badge/chip di dalam panel */
+.card-generator-overlay .bin-notification-count,
+.card-generator-overlay .bulk-summary,
+.card-generator-overlay .bin-upload-date,
+.card-generator-overlay .bin-upload-label,
+.cc-modal-content .tg-status {
+    background: #ffd60a !important;
+    border: 2px solid #111114 !important;
+    border-radius: 6px !important;
+    color: #111114 !important;
+    box-shadow: none !important;
+}
+
+/* error modal list */
+.PIXZER0IMUBILD-error-missing,
+.PIXZER0IMUBILD-error-fix,
+.PIXZER0IMUBILD-error-item {
+    background: #fffdf7 !important;
+    border: 2px solid #111114 !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+    color: #111114 !important;
+}
+
+/* ── NEO-BRUTALISM: toast HUD (card, success, mini hit) ─────────── */
+.card-toast {
+    background: #fffdf7 !important;
+    background-image: none !important;
+    border: 2px solid #111114 !important;
+    border-radius: 10px !important;
+    box-shadow: 4px 4px 0 #111114 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+.card-toast::before {
+    height: 3px !important;
+    background: #e63946 !important;
+}
+.card-toast::after { display: none !important; }
+.card-toast-icon-wrap {
+    background: #f4f1e8 !important;
+    border: 2px solid #111114 !important;
+    border-radius: 6px !important;
+    color: #c1121f !important;
+}
+.card-toast-label { color: #c1121f !important; letter-spacing: 0.12em !important; }
+.card-toast-value { color: #111114 !important; text-shadow: none !important; }
+.card-toast-copy {
+    background: #fffdf7 !important;
+    border: 2px solid #111114 !important;
+    border-radius: 6px !important;
+    box-shadow: 1.5px 1.5px 0 #111114 !important;
+    color: #111114 !important;
+}
+.card-toast-copy:hover {
+    background: #ffd60a !important;
+    color: #111114 !important;
+    transform: translate(-1px, -1px);
+    box-shadow: 2px 2px 0 #111114 !important;
+}
+
+.success-toast {
+    background: #fffdf7 !important;
+    background-image: none !important;
+    border: 2px solid #111114 !important;
+    border-radius: 12px !important;
+    box-shadow: 5px 5px 0 #111114 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+.success-toast::before,
+.success-toast::after,
+.success-toast-glow-ring,
+.success-icon-pulse { display: none !important; }
+.success-icon-inner {
+    background: #fffdf7 !important;
+    border: 2px solid #111114 !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+}
+.success-toast-title { color: #111114 !important; text-shadow: none !important; letter-spacing: 0.14em !important; }
+.success-toast-title--dim { color: #8e8e97 !important; }
+.success-toast-details { color: #2b2b31 !important; }
+.success-toast-meta-item { color: #5a5a63 !important; }
+.success-toast-meta-sep { color: #c9c9d1 !important; }
+.success-shield-icon, .success-verify-icon { filter: none !important; }
+.success-progress-bar {
+    height: 4px !important;
+    background: #e63946 !important;
+    box-shadow: none !important;
+    animation: successProgress 5s linear forwards !important;
+}
+
+.hit-mini-toast {
+    background: #fffdf7 !important;
+    border: 2px solid #111114 !important;
+    border-radius: 10px !important;
+    box-shadow: 4px 4px 0 #111114 !important;
+}
+.hit-mini-toast::before,
+.hit-mini-toast::after { display: none !important; }
+
+/* ── NEO-BRUTALISM: sisa permukaan gelap ───────────────────────── */
+.bin-notification-header {
+    background: #e63946 !important;
+    background-image: none !important;
+    border-bottom: 2px solid #111114 !important;
+}
+.bin-notification-title {
+    color: #fff !important;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 800;
+}
+.bin-notification-body {
+    background: #fffdf7 !important;
+    color: #111114 !important;
+}
+.bin-notification-count {
+    background: #ffd60a !important;
+    border: 2px solid #111114 !important;
+    color: #111114 !important;
+    border-radius: 6px !important;
+}
+.bin-library-modal .cc-modal-close,
+.cc-modal-content .cc-modal-close,
+#tgModal .cc-modal-close {
+    color: #111114 !important;
+    border: 2px solid #111114 !important;
+    background: #fffdf7 !important;
+    border-radius: 6px !important;
+    box-shadow: 1.5px 1.5px 0 #111114 !important;
+}
+.update-btn {
+    background: #e63946 !important;
+    background-image: none !important;
+    border: 2px solid #111114 !important;
+    border-radius: 6px !important;
+    box-shadow: 2px 2px 0 #111114 !important;
+    color: #fff !important;
+}
+.update-btn:hover {
+    transform: translate(-1px, -1px) !important;
+    box-shadow: 3px 3px 0 #111114 !important;
+}
+.hits-count {
+    border: 2px solid #111114;
+    border-radius: 6px;
+    box-shadow: 1.5px 1.5px 0 #111114;
+}
