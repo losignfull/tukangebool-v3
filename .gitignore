@@ -1,3 +1,2 @@
-# Sensitive / backup files
-*.bak
-*.zip
+preview-*.html
+.and-code/
